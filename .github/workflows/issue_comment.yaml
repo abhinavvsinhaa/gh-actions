@@ -34,7 +34,7 @@ jobs:
           Comment from the Github API call not pre-defined job
           '
       env:
-        GITHUB_TOKEN: ${{ secret.GITHUB_TOKEN }} # will be required to call the API
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # will be required to call the API
         ORGANIZATION: ${{ github.event.organisation.login }}
         REPOSITORY: ${{ github.event.repository.name }}
         ISSUE_NUMBER: ${{ github.event.issue.number }}
