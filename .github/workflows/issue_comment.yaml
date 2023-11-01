@@ -25,6 +25,7 @@ jobs:
 
   comment-using-api:
     runs-on: ubuntu-latest
+    permissions: write-all
     steps:
     - name: "create comment with api"
       run: |
