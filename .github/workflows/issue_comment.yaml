@@ -28,14 +28,11 @@ jobs:
     steps:
     - name: "create comment with api"
       run: |
-        gh api \
-          --method POST \
-          -H "Accept: application/vnd.github+json" \
-          -H "X-GitHub-Api-Version: 2022-11-28" \
-           /repos/${OWNER}/${REPO}/issues/${ISSUE_NUMBER}/comments
-          -f body='Comment from the Github API call not pre-defined job'
+        gh api -X POST \
+            https://api.github.com/repos/${ORGANIZATION}/${REPOSITORY}/issues/${ISSUE_NUMBER}/comments \
+            -f body='Comment but from the API call not marketplace actions'
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # will be required to call the API
-        OWNER: ${{ github.event.owner.login }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # will be required to call the gh cli command
+        ORGANIZATION: ${{ github.event.repository.owner.login }} #JSON structure changed
         REPOSITORY: ${{ github.event.repository.name }}
         ISSUE_NUMBER: ${{ github.event.issue.number }}
