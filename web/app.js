@@ -39,4 +39,4 @@ app.use(function (err, req, res, next) {
 })
 
 // export express app
-module.exports = app;
+module.exports = app
