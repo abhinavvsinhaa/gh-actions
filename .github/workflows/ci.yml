@@ -1,0 +1,42 @@
+name: Continuous integration workflow
+
+on:
+  pull_request:
+    branches:
+    - main
+
+defaults:
+  run:
+    shell: bash
+    working-directory: ./web
+
+jobs:
+  test:
+    name: 'Run unit tests'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      name: 'checkout repository'
+
+    - name: 'install dependencies'
+      run: npm install
+
+    - name: 'run tests'
+      run: npm run test
+
+  # linting job
+  lint:
+    name: 'Linting'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      name: 'checkout repository'
+
+    - name: 'install dependencies'
+      run: npm install
+
+    - name: 'run linter'
+      run: npx standard -v
+
+  # deploy current branch to staging
+
